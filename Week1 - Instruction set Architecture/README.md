@@ -10,7 +10,7 @@ Usually, applications suggest how to improve architecture and provide revenue to
 
 The middle layers provide feedback to guide applications and technology research directions.
 
-Moore's Law says that the number of transistors in a processor doubles every 18 to 24 months. The below diagram shows the gradual growth in the performance of processor until 2012.
+Moore's Law says that the number of transistors in a processor is doubled every 18 to 24 months. The below diagram shows the gradual growth in the performance of processor until 2012.
 
 ![picture](data/Moore.png)
 
