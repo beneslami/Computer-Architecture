@@ -1,10 +1,15 @@
 
+### Processor Performance
 * Instructions per program depends on source code, compiler technology and ISA
 
 * Cycles per Instructions (CPI) depends upon the ISA and the microarchitecture
 
 * Time per cycle depends upon the microarchitecture and the base technology
 
+### Pipeline
+![picture](data/pipeline.png)
+![picture](data/1.png)
+![picture](data/2.png)
 * **Structural Hazard** : An instruction in the pipeline needs a resource being used by another instruction in the pipeline.
 
 Approaches to resolving this issue:
@@ -48,6 +53,10 @@ To address the issue:
 |LW|||F|D|X|__M0__|M1|W
 |LW||||F|D|__-__|X|M0|M1|W|
 
+![picture](data/3.png)
+![picture](data/4.png)
+![picture](data/5.png)
+
 * **Data Hazard** : An instruction depends on a data value produced by an earlier instruction
 
 Data hazards occur when one instruction depends on a data value produced by a preceding instruction still in the pipeline. Approaches to resolving data hazards:
@@ -67,11 +76,22 @@ The pipeline stages for the above instructions are as below:
 |   |IF2|__ID2__|__ID2__|__ID2__|__ID2__|EX2|MA1|WB2|
 |   |   |IF3|IF3|IF3|IF3|ID3|EX3|MA3|WB3|
 
+![picture](data/6.png)
 
 3. Bypass: Hardware datapath allows values to be sent to an earlier stage before preceding instruction has left the pipeline
+
+![picture](data/7.png)
+
 4. Speculate: Guess that there is not a problem, if incorrect, kill speculative instruction and restart.
 
 
 
-
-* **Control Hazard** : Whether or not an instruction should be executed depends on a control decision made by an earlier instruction
+* **Control Hazard** : Whether or not an instruction should be executed depends on a control decision made by an earlier instruction. Fundamental question is What do we need t calculate the next PC (program counter)? The answer is that it depends on the instruction that we use in each cycle. For example:
+- For Jumps:
+  - Opcode, offset and PC
+- For Jump Register
+  - Opcode and Register Value
+- For Conditional Branches
+  - Opcode, PC, Register (for condition), and offset
+- For all other instruction
+  - Opcode and PC
