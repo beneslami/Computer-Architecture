@@ -95,3 +95,11 @@ The pipeline stages for the above instructions are as below:
   - Opcode, PC, Register (for condition), and offset
 - For all other instruction
   - Opcode and PC
+
+
+
+* Pipelining doesn't help **latency** of a single task, but it helps **throughput** of entire workload.
+* Pipeline rate is limited by slowest pipeline stage.
+* multiple tasks operating simultaneously.
+* Unbalanced lengths of pipe stages reduces the speedup.
+* Time to fill and drain the pipeline reduce the speedup.   
