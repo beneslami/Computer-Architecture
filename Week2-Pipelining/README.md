@@ -96,6 +96,14 @@ The pipeline stages for the above instructions are as below:
 - For all other instruction
   - Opcode and PC
 
+Four branch hazard alternatives:
+1. Stall until branch direction is clear (freezing or flushing the pipeline)
+2. Predict Branch Not Taken
+  * 33% of branches are not taken in MIPS
+  * Squash instructions in the pipeline if branch actually taken.
+  * Exectue successor instructions in a sequence
+3. Predict Branch Taken
+4. Delayed Branch
 
 
 * Pipelining doesn't help **latency** of a single task, but it helps **throughput** of entire workload.
