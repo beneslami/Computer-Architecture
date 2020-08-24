@@ -30,3 +30,22 @@ I stage which stands for **issue** is for controlling structural hazards and als
 * **Read Operand**: wait until no data hazards, then read the operands.
 
 Scoreboard allows instruction to execute whenever these stages are on hold, no waiting for prior instructions. In this machine WAW hazards are eliminated by renaming the registers. Scoreboard is a table maintained by the hardware. It keeps track of instructions being fetched, issued, executed etc. Hardware uses this information to dynamically schedule instructions.
+
+## Tomasulo
+Another approach for dynamic scheduling is introduced in IBM 360 in 1966 which is based on the concept of dynamic register renaming. Features of Tomasulo are as follows:
+1. Control and buffers are distributed with function units(FU), in contrast with the Scoreboard with has a centralized hazard detector.
+2. Registers in instructions are replaced by values or pointers to reservation station(RS), called Register Renamting.
+  -  Renaming all destination Registers
+  - Avoids WAR, WAW hazards.
+  - More RS than registers, so can do optimizations, but compiler is not able to.
+
+3. Results to FU from RS is not through registers but through common data bus that broadcasts results to all FUs.
+4. Load and Stores are treated as FUs with RSs as well.
+
+Key differences between Tomasulo and Scoreboard:
+* Hazard detection and instruction issue is done per execution unit.
+* Data results go straight to where they are needed, Common Data Bus (CDB)
+* Load/Stores get their own execution units
+* Use Reservation Station for renaming.
+
+![picture](data/tomasulo.png)
