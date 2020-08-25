@@ -34,7 +34,7 @@ Scoreboard allows instruction to execute whenever these stages are on hold, no w
 ## Tomasulo
 Another approach for dynamic scheduling is introduced in IBM 360 in 1966 which is based on the concept of dynamic register renaming. Features of Tomasulo are as follows:
 1. Control and buffers are distributed with function units(FU), in contrast with the Scoreboard with has a centralized hazard detector.
-2. Registers in instructions are replaced by values or pointers to reservation station(RS), called Register Renamting.
+2. Registers in instructions are replaced by values or pointers to reservation station(RS), called Register Renaming.
   -  Renaming all destination Registers
   - Avoids WAR, WAW hazards.
   - More RS than registers, so can do optimizations, but compiler is not able to.
@@ -48,4 +48,8 @@ Key differences between Tomasulo and Scoreboard:
 * Load/Stores get their own execution units
 * Use Reservation Station for renaming.
 
+Note that, one of the most important problems in these architecture is the occurrence of **exception**. in Out-Of-Order execution and Out-Of-Order Completion CPUs, the exception is not scheduled in the correct time. So, there should be an Out-Of-Order execution but In-Order-Completion to handle the exception problems.
+
 ![picture](data/tomasulo.png)
+
+### Branch Prediction
