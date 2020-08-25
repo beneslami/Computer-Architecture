@@ -52,4 +52,6 @@ Note that, one of the most important problems in these architecture is the occur
 
 ![picture](data/tomasulo.png)
 
-### Branch Prediction
+### Speculation
+
+One way to address the abovementioned problem is to speculate branches. Speculative processors are based on branch predictions. it predicts the occurrence of the branch as two possibility: Taken and Not Taken. If the prediction is wrong, it rolls back the execution. In Tomasulo, we don't have precise interrupt point. Therefore, there is a need to fix the out-of-order completion aspect so that we can find precise breakpoint in instruction stream. Speculation allows an instruction to issue that is dependent on branch predicted to be taken without any consequences if branch is not actually taken. To do so, we need a hardware buffer for results of uncommitted instructions which is called **reorder buffer**. 
