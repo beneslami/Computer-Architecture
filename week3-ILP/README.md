@@ -54,4 +54,22 @@ Note that, one of the most important problems in these architecture is the occur
 
 ### Speculation
 
-One way to address the abovementioned problem is to speculate branches. Speculative processors are based on branch predictions. it predicts the occurrence of the branch as two possibility: Taken and Not Taken. If the prediction is wrong, it rolls back the execution. In Tomasulo, we don't have precise interrupt point. Therefore, there is a need to fix the out-of-order completion aspect so that we can find precise breakpoint in instruction stream. Speculation allows an instruction to issue that is dependent on branch predicted to be taken without any consequences if branch is not actually taken. To do so, we need a hardware buffer for results of uncommitted instructions which is called **reorder buffer**. 
+One way to address the abovementioned problem is to speculate branches. Speculative processors are based on branch predictions. it predicts the occurrence of the branch as two possibility: Taken and Not Taken. If the prediction is wrong, it rolls back the execution. In Tomasulo, we don't have precise interrupt point. Therefore, there is a need to fix the out-of-order completion aspect so that we can find precise breakpoint in instruction stream. Speculation allows an instruction to issue that is dependent on branch predicted to be taken without any consequences if branch is not actually taken. To do so, we need a hardware buffer for results of uncommitted instructions which is called **reorder buffer**.
+
+### Multiple Issue
+
+The goal in this architecture is to reach CPI < 1, which is issuing multiple instructions per cycle. There are two variants of this architecture:
+- Superscalar
+- Very Long instruction Word (VLIW):
+
+There are multiple, independent functional units which multiple operations are placed in one instruction.
+
+- Explicitly Parallel Instruction Computer (EPIC)
+
+|Common Name|Issue structure|Hazard Detection|Scheduling|Distinguishing Characteristics|
+|:-:|:-:|:-:|:-:|:-:|
+|Superscalar(static)|Dynamic|hardware|static|in-order|
+|Superscalar(dynamic)|Dynamic|hardware|dynamic|out-of-order execution without speculation|
+|Superscalar(Speculative)|Dynamic|hardware|dynamic with speculation|Out-of-Order execution with speculation|
+|VLIW/LIW|static|primarily software|static|all hazards are determined and indicated by the compiler|
+|EPIC|primarily static|primarily software|mostly static|all hazards are determined and indicated by the compiler|
