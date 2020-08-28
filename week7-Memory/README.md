@@ -1,8 +1,11 @@
 ### Memory
 
+DRAM cell:
 ![picture](data/dram.png)
 
+SRAM cell:
 ![picture](data/sram.png)
+
 
 ![picture](data/tradeoff.png)
 
@@ -50,7 +53,7 @@ Q3: Which block to replace?
   - First In, First Out (FIFO) aka Round-Robin (used highly in associative caches)
   - Not Most Recently used (NMRU)
     - FIFO with exception for most recently used blocks
-Q4: How are writes handled (Write Strategy)?
+Q4: How are writes handle d (Write Strategy)?
 * Cache Hit
   - Write Through : write both cache and memory, generally higher traffic but simpler to design
   - Write Back : write cache only, memory is written when evicted, dirty bit per block avoids unnecessary write backs, more complicated
@@ -59,6 +62,35 @@ Q4: How are writes handled (Write Strategy)?
   - Write Allocate: fetch block into cache, then write
 
 Categorizing cache miss:
-1. Compulsory: First-referene to a block, occur even with infinite cache
+1. Compulsory: First-reference to a block, occur even with infinite cache
 2. Capacity: Cache is too small to hold all data needed by program, occur even under perfect replacement policy
-3. Conflict: misses that occur because of collisions due to less than full associativity. 
+3. Conflict: misses that occur because of collisions due to less than full associativity.
+
+Q4: Which block should be replaced on a miss?
+- Easy for Direct mapped.
+- Set Associative and Fully Associative:
+  - Random
+  - LRU
+  - FIFO
+  - LFU
+
+One idea is to make instruction and data caches separate. Instructions and data have different patterns of temporal and spatial locality. Also instructions are generally read-only. The advantage of this approach is that it doubles bandwidth between CPU & memory hierarchy and each cache can be optimized for its locality pattern.
+
+In cache performance optimization, there are different approaches:
+
+1. Having Larger Block Size: In this approach we keep cache size and associativity constant. In this way, we reduce Compulsory misses due to having spatial locality thereby having more accesses to a pre-fetched block. On the other hand, it may increase the probability of having capacity misses due to transferring unused data.
+
+![picture](data/2.png)
+
+2. Larger Caches: In this approach, we have a fixed block size, set size etc. In this way, we have no effect on compulsory misses, but it reduces capacity misses and conflict misses.
+
+3. Higher Associativity: It decreases conflict misses.
+
+4. Multi-Level Caches:
+```
+HitTime(L1) + MissRate(L1)*(HitTime(L2) + MissRate(L2)*MissPenalty(L2))
+```
+
+5. Read Misses Take Priority
+
+6. Avoid address translation
